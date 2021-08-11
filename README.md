@@ -5,7 +5,7 @@ Juman++ model for Jumandic.
 
 ## Prerequrements
 
-* Unix environment (on Windows use (WSL)[https://docs.microsoft.com/en-us/windows/wsl/install-win10] or (MSYS2/MinGW64)[https://www.msys2.org/])
+* Unix environment (on Windows use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) or [MSYS2/MinGW64](https://www.msys2.org/))
 * Juman++ build environment
 * Python 3.6+
 * Ruby
