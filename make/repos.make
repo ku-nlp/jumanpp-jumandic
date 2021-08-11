@@ -22,12 +22,6 @@ $(FAIRYMA_CORPUS_ROOT)/.git/HEAD :
 	mkdir -p $(FAIRYMA_CORPUS_ROOT)
 	git clone git@github.com:FairyDevicesRD/FairyMaCorpus.git $(FAIRYMA_CORPUS_ROOT)
 
-PEK_REPO = $(PARSEEVALKIT_ROOT)/.git/HEAD
-
-$(PARSEEVALKIT_ROOT)/.git/HEAD :
-	mkdir -p $(PARSEEVALKIT_ROOT)
-	git clone git@bitbucket.org:ku_nlp/parseevalkit.git $(PARSEEVALKIT_ROOT)
-
 update-repos:
 	git -C $(JUMANPP_ROOT) pull
 	git -C $(JUMANDIC_ROOT) pull
