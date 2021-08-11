@@ -3,7 +3,6 @@ JUMANDIC_ROOT ?= $(REPO_ROOT)/jumandic
 KYOTO_CORPUS_ROOT ?= $(REPO_ROOT)/kyoto-corpus
 LEAD_CORPUS_ROOT ?= $(REPO_ROOT)/lead-corpus
 FAIRYMA_CORPUS_ROOT ?= $(REPO_ROOT)/fairyma-corpus
-PARSEEVALKIT_ROOT ?= $(REPO_ROOT)/parseevalkit
 JUMANPP_SCRIPT = $(JUMANPP_ROOT)/script
 
 $(JUMANPP_ROOT)/.git/HEAD $(JUMANPP_SCRIPT) :
@@ -28,7 +27,6 @@ update-repos:
 	git -C $(KYOTO_CORPUS_ROOT) pull
 	git -C $(LEAD_CORPUS_ROOT) pull
 	git -C $(FAIRYMA_CORPUS_ROOT) pull
-	git -C $(PARSEEVALKIT_ROOT) pull
 
 jumanpp-repo: $(JUMANPP_ROOT)/.git/HEAD
 
