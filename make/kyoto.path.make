@@ -5,13 +5,13 @@ $(KYOTO_CORPUS_ROOT)/.git/HEAD :
 
 $(KYOTO_KNP_TRAIN) : $(KYOTO_CORPUS_ROOT)/.git/HEAD
 	PYTHONUTF8=1 python3 $(KYOTO_FILTER_SCRIPT) \
-		--input $(KYOTO_CORPUS_ROOT)/knp \
+		--input $(KYOTO_CORPUS_ROOT)/dat \
 		--id $(KYOTO_CORPUS_ROOT)/id/train.id \
 		--output $(KYOTO_KNP_TRAIN)
 
 $(KYOTO_KNP_TEST) : $(KYOTO_CORPUS_ROOT)/.git/HEAD
 	PYTHONUTF8=1 python3 $(KYOTO_FILTER_SCRIPT) \
-		--input $(KYOTO_CORPUS_ROOT)/knp \
+		--input $(KYOTO_CORPUS_ROOT)/dat \
 		--id $(KYOTO_CORPUS_ROOT)/id/test.id \
 		--output $(KYOTO_KNP_TEST)
 

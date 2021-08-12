@@ -8,4 +8,4 @@ $(JPP_BOOTSTRAP_BIN) $(JPP_TRAIN_BIN) $(JPP_TEST_BIN) : $(JUMANPP_ROOT)/.git/HEA
 			-DCMAKE_CXX_FLAGS='$(JUMANPP_CXX_FLAGS)' \
 			$(abspath $(JUMANPP_ROOT)) \
 		&& \
-		cmake --build . --parallel -- jpp_jumandic_bootstrap jumanpp_v2_train jumanpp_v2
+		cmake --build . -- -j

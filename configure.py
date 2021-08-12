@@ -2,12 +2,14 @@
 
 import argparse
 from pathlib import Path
+import shlex
 
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument('--kyoto-corpus', help="Path to Mainichi Shinbun data or URL to Full Kyoto Corpus Repository")
     p.add_argument('--rnn-model', type=Path, help="Path to RNN Model file. Will download the model from internet if left empty.")
     p.add_argument('--build-dir', default=Path(__file__).parent / "bld", type=Path, help='Path to build directory (optional)')
+    p.add_argument('--partial-data-url', help='URL to download partially annotated data')
     return p.parse_args()
 
 def guess_kyoto_corpus_mode(corpus):
@@ -30,6 +32,10 @@ def process(args, outf):
     outf.write("# Kyoto Corpus\n")
     outf.write(f"KYOTO_CORPUS_MODE ?= {kyoto_corpus_mode}\n")
     outf.write(f"KYOTO_CORPUS_SRC ?= {kyoto_corpus}\n")
+    purl = args.partial_data_url
+    if purl is None:  # UPDATE ME SEMI-REGULARY
+        purl = "https://github.com/ku-nlp/jumanpp-jumandic/releases/download/2020.08.12/partial.jpp2part"
+    outf.write(f"PARTIAL_ANNOTATED_URL ?= {shlex.quote(purl)}\n")
 
 def main(args):
     cfg_tmp = args.build_dir / "conf.make.tmp"

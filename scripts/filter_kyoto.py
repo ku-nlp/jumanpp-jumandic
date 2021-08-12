@@ -11,6 +11,7 @@ class Extractor(object):
         super().__init__()
         self.ids = set(Extractor._collect_ids(args.id_root, args.ids))
         self.ext = args.ext
+        self.collected = set()
 
     @staticmethod
     def _collect_ids_from_file(path):
@@ -33,6 +34,7 @@ class Extractor(object):
 
     def filter_file(self, inf, outf):
         writing = False
+        collected = self.collected
         for line in inf:
             if writing and line == "EOS\n":
                 outf.write(line)
@@ -42,8 +44,14 @@ class Extractor(object):
                 if hyph is not None:
                     sid = line[7:hyph]
                     if sid in self.ids:
+                        space = line.find(' ', hyph)
+                        full_id = line[7:space]
+                        if full_id in collected:
+                            continue
+                        collected.add(full_id)
                         writing = True
                         outf.write(line)
+
             elif writing:
                 outf.write(line)
 

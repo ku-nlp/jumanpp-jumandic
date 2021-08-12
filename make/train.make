@@ -14,11 +14,12 @@ dic : $(JPP_JUMANDIC_RAW)
 
 # training
 
-$(BIN_DICTIONARY) : $(JPP_JUMANDIC_RAW) $(JPP_BOOTSTRAP_BIN) $(JPP_JUMANDIC_VERSION)
+$(BIN_DICTIONARY) : $(JPP_JUMANDIC_RAW) $(JPP_BOOTSTRAP_BIN)
 	mkdir -p $(MODEL_DIR)
 	$(JPP_BOOTSTRAP_BIN) \
 		--dic-version=$(shell cat $(JPP_JUMANDIC_VERSION)) \
 		$(JPP_JUMANDIC_RAW) $(BIN_DICTIONARY)
+	touch $(BIN_DICTIONARY)
 
 ifeq ($(TRAIN_MODE),NOTEST)
 MODEL_NAME=jumandic-notest
@@ -46,7 +47,7 @@ $(NORNN_MODEL) : $(BIN_DICTIONARY) $(JPP_TRAIN_BIN) $(PARTIAL_TRAIN) $(TRAIN_COR
 		--model-output $(NORNN_MODEL) \
 		--size $(MODEL_SIZE) \
 		--threads $$(( $(CORES) - 1 )) \
-		--batch 120000 \
+		--batch 150000 \
 		--max-batch-iters $(NITERS) \
 		--max-epochs $(NEPOCHS) \
 		--epsilon 1e-7 \
@@ -60,17 +61,3 @@ $(NORNN_MODEL) : $(BIN_DICTIONARY) $(JPP_TRAIN_BIN) $(PARTIAL_TRAIN) $(TRAIN_COR
 		--gb-first-full
 
 nornn: $(NORNN_MODEL)
-
-$(RNN_MODEL) : $(NORNN_MODEL) $(RNN_MODEL_PATH)
-	$(JPP_TRAIN_BIN) \
-		--model-input $(NORNN_MODEL) \
-		--model-output $(RNN_MODEL) \
-		--rnn-model $(RNN_MODEL_PATH) \
-		--rnn-fields=baseform,pos \
-		--feature-weight-perceptron=1 \
-		--feature-weight-rnn=0.0176 \
-		--rnn-nce-bias=5.62844432562 \
-		--rnn-unk-constant=-3.4748115191 \
-		--rnn-unk-length=-2.92994951022
-
-rnn: $(RNN_MODEL)

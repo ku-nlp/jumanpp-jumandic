@@ -14,7 +14,6 @@ include $(wildcard $(current_dir)/config.make)
 endif
 
 # Default configuration
-RNN_MODEL_PATH ?= /specify/path/to/a/rnn/model
 
 MODE ?= NORMAL
 REPO_ROOT ?= $(abspath $(BUILD_ROOT)/repos)
@@ -50,3 +49,4 @@ endif
 
 include make/jumanpp.make
 include make/train.make
+include make/rnn.make

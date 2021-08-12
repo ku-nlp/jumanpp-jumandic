@@ -11,6 +11,7 @@ Juman++ model for Jumandic.
 * Ruby
 * Perl
 * Configured ssh authorization for github (we will clone several repositories via ssh)
+* 32 GB of RAM
 
 ### Recommended
 
@@ -24,3 +25,5 @@ Run the configuration script: `python3 configure.py`.
 It will prompt for the location of Mainichi Shinbun texts.
 
 After that run `make nornn` for training a model without RNN component.
+`make rnn` produces the model with RNN component.
+The models will be inside the `bld/model` folder.
