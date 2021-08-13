@@ -38,6 +38,7 @@ def process(args, outf):
     outf.write(f"PARTIAL_ANNOTATED_URL ?= {shlex.quote(purl)}\n")
 
 def main(args):
+    args.build_dir.mkdir(parents=True, exist_ok=True)
     cfg_tmp = args.build_dir / "conf.make.tmp"
     with cfg_tmp.open('wt', encoding='utf-8') as outf:
         process(args, outf)
