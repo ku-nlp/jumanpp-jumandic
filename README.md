@@ -34,8 +34,8 @@ It is possible to add your words to the model.
 To do it:
 1. Perform the configuration as described above: `python3 configure.py`
 2. Fetch the repositories `make repo`.
-3. Go into `bld/jumandic` folder, it is a local clone of [JumanDIC repository](https://github.com/ku-nlp/JumanDIC).
-4. Create a new file with the `.dic` extension in the `userdic` folder of the `bld/jumandic` folder.
+3. Go into `bld/repos/jumandic` folder, it is a local clone of [JumanDIC repository](https://github.com/ku-nlp/JumanDIC).
+4. Create a new file with the `.dic` extension in the `userdic` folder of the `bld/repos/jumandic` folder.
 5. Put your words into that file, in JUMAN dictionary format (refer to other files for example).
 6. Execute `make clean-dic` if you have already built a Juman++ model.
 7. Build your model as shown above.
